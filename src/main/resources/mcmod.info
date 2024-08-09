@@ -1,0 +1,16 @@
+[
+{
+  "modid": "eruditetweaks",
+  "name": "Erudite Tweaks",
+  "description": "Adds configurable options to other mods' hardcoded features.",
+  "version": "1.0.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["fullskele"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
