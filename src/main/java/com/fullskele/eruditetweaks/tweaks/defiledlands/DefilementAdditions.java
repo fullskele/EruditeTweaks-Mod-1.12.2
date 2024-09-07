@@ -1,5 +1,6 @@
-package com.example.eruditetweaks;
+package com.fullskele.eruditetweaks.tweaks.defiledlands;
 
+import com.fullskele.eruditetweaks.ConfigHandler;
 import gloomyfolken.hooklib.api.Hook;
 import gloomyfolken.hooklib.api.HookContainer;
 import gloomyfolken.hooklib.api.OnMethodCall;

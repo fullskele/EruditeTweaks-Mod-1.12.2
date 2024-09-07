@@ -1,5 +1,6 @@
-package com.example.eruditetweaks;
+package com.fullskele.eruditetweaks.tweaks.quark;
 
+import com.fullskele.eruditetweaks.ConfigHandler;
 import gloomyfolken.hooklib.api.*;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -109,7 +110,6 @@ public class ArchaeologistAdditions {
         if (!ConfigHandler.DOES_ARCHAEOLOGISTS_CHANGES || !Loader.isModLoaded("quark"))
             return;
         for (int i = 0; i < ConfigHandler.ARCHAEOLOGIST_TRADES.length; i++) {
-            // Assuming ARCHAEOLOGIST_TRADES is a 2D array of strings
             for (String tradeLine : ConfigHandler.ARCHAEOLOGIST_TRADES[i]) {
                 String[] tradeSplit = tradeLine.replace(" ", "").split(",");
                 if (tradeSplit.length != 9) {

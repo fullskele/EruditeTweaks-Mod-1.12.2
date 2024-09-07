@@ -1,4 +1,4 @@
-package com.example.eruditetweaks;
+package com.fullskele.eruditetweaks;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

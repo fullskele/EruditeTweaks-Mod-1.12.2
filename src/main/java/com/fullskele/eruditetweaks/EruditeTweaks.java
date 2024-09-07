@@ -1,5 +1,6 @@
-package com.example.eruditetweaks;
+package com.fullskele.eruditetweaks;
 
+import com.fullskele.eruditetweaks.tweaks.quark.ArchaeologistAdditions;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

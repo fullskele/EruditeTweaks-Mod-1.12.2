@@ -23,3 +23,11 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+CREDITS.txt
+changelog.txt
+*.jpeg
+LICENSE-Paulscode IBXM Library.txt
+LICENSE-Paulscode SoundSystem CodecIBXM.txt
+LICENSE.txt
+README.txt
+*.jar

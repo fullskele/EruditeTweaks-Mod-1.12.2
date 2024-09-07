@@ -1,4 +1,4 @@
-package com.example.eruditetweaks;
+package com.fullskele.eruditetweaks.tweaks.quark;
 
 import net.minecraft.item.ItemStack;
 

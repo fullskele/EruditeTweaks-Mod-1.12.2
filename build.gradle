@@ -66,6 +66,7 @@ dependencies {
     implementation fg.deobf("curse.maven:hooklib-1001572:5261388")
     implementation fg.deobf("curse.maven:defiled-lands-273502:2835318")
     implementation fg.deobf("curse.maven:quark-243121:2924091")
+    implementation files("libs/terracartreloaded-1.12.2-1.2.3.jar")
 }
 
 dependencies {
