@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0.1'
+version = '1.0.2'
 group = 'com.fullskele.eruditetweaks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'eruditetweaks'
 
@@ -66,6 +66,7 @@ dependencies {
     implementation fg.deobf("curse.maven:hooklib-1001572:5261388")
     implementation fg.deobf("curse.maven:defiled-lands-273502:2835318")
     implementation fg.deobf("curse.maven:quark-243121:2924091")
+    //implementation fg.deobf("curse.maven:antique-atlas-227795:2823030")
     implementation files("libs/terracartreloaded-1.12.2-1.2.3.jar")
 }
 

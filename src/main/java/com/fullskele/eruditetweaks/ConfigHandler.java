@@ -9,7 +9,7 @@ public class ConfigHandler {
 
     public static Configuration config;
 
-
+    public static String[] EXTRA_BABY_SPAWNS;
     public static boolean DOES_DEFILEMENT_BASE;
     public static String[] DEFILEMENT_CONVERSIONS;
     public static boolean DOES_ARCHAEOLOGISTS_CHANGES;
@@ -18,6 +18,10 @@ public class ConfigHandler {
     public static void init(File file) {
         config = new Configuration(file);
         String category;
+
+        category = "Extra Baby Spawns";
+        config.addCustomCategoryComment(category, "Format - modid:entityid,minExtraSpawns,MaxExtraSpawns");
+        EXTRA_BABY_SPAWNS = config.getStringList("Extra Baby Spawns", category, new String[]{"minecraft:pig,0-2"}, "");
 
         category = "Defiled Lands Custom Conversions";
         config.addCustomCategoryComment(category, "Format - modid1:itemid1:metadata1, modid2:itemid2:metadata2");
