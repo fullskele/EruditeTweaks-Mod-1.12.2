@@ -48,6 +48,6 @@ public class CommandDeathScrollClear extends CommandBase {
     private void clearPlayerDeathScroll(EntityPlayerMP player) {
         if (player.world.isRemote) return;
         IDeathLocation deathLoc = player.getCapability(DeathLocation.Provider.DEATH_LOC_CAP, null);
-        deathLoc.setDeathLocation(null);
+        deathLoc.setUsedScroll(true);
     }
 }
