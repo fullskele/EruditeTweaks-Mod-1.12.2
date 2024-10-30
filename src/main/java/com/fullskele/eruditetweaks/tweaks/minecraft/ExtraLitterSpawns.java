@@ -19,8 +19,8 @@ public class ExtraLitterSpawns {
         EntityAgeable parentB = (EntityAgeable) event.getParentB();
 
         ResourceLocation resourceLocation = EntityList.getKey(parentA);
-        if (resourceLocation != null && EruditeTweaks.extraLitterRanges.containsKey(resourceLocation.toString())) {
-            Range<Integer> spawnRange = EruditeTweaks.extraLitterRanges.get(resourceLocation.toString());
+        if (resourceLocation != null && EruditeTweaks.EXTRA_LITTER_SPAWNS.containsKey(resourceLocation.toString())) {
+            Range<Integer> spawnRange = EruditeTweaks.EXTRA_LITTER_SPAWNS.get(resourceLocation.toString());
             World world = parentA.world;
             int randomLoopAmount = spawnRange.lowerEndpoint() + world.rand.nextInt(spawnRange.upperEndpoint() - spawnRange.lowerEndpoint() + 1);
             for (int i = 0; i < randomLoopAmount; i++) {
@@ -44,11 +44,11 @@ public class ExtraLitterSpawns {
                 System.err.println("EruditeTweaks: Incorrect range in entry: " + entry);
                 continue;
             }
-            if (EruditeTweaks.extraLitterRanges.containsKey(sections[0])) {
+            if (EruditeTweaks.EXTRA_LITTER_SPAWNS.containsKey(sections[0])) {
                 System.err.println("EruditeTweaks: Skipping duplicate entry: " + entry);
                 continue;
             }
-            EruditeTweaks.extraLitterRanges.put(sections[0], range);
+            EruditeTweaks.EXTRA_LITTER_SPAWNS.put(sections[0], range);
         }
     }
 

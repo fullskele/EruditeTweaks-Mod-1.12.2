@@ -36,13 +36,13 @@ public class ConfigHandler {
 
         TWEAK_VANILLA_ANIMALS = config.getBoolean("tweak vanilla animals", category, false, "Should vanilla animals have their breeding items tweaked?");
 
-        PIG_FOODS = config.getString("pig food item list", category, "", "");
-        HORSE_FOODS = config.getString("horse food item list", category, "", "");
-        COW_FOODS = config.getString("cow food item list", category, "", "");
-        SHEEP_FOODS = config.getString("sheep food item list", category, "", "");
-        LLAMA_FOODS = config.getString("llama food item list", category, "", "");
-        CHICKEN_FOODS = config.getString("chicken food item list", category, "", "");
-        RABBIT_FOODS = config.getString("rabbit food item list", category, "", "");
+        PIG_FOODS = config.getString("pig breeding item list", category, "minecraft:carrot,minecraft:apple", "");
+        HORSE_FOODS = config.getString("horse breeding item list", category, "minecraft:wheat,minecraft:pumpkin", "");
+        COW_FOODS = config.getString("cow breeding item list", category, "minecraft:wheat,minecraft:beetroot", "");
+        SHEEP_FOODS = config.getString("sheep breeding item list", category, "minecraft:wheat,minecraft:melon", "");
+        LLAMA_FOODS = config.getString("llama breeding item list", category, "minecraft:wheat,minecraft:pumpkin_seeds", "");
+        CHICKEN_FOODS = config.getString("chicken breeding item list", category, "minecraft:wheat_seeds,minecraft:rotten_flesh", "");
+        RABBIT_FOODS = config.getString("rabbit breeding item list", category, "minecraft:golden_carrot,minecraft:tallgrass", "");
 
 
         category = "Defiled Lands Tweaks";
@@ -74,6 +74,7 @@ public class ConfigHandler {
     }
 
     public static void RegisterConfig(FMLPreInitializationEvent event) {
+
         EruditeTweaks.config = new File(event.getModConfigurationDirectory() + "/");
         init(new File(EruditeTweaks.config.getPath(), EruditeTweaks.MODID + ".cfg"));
     }
