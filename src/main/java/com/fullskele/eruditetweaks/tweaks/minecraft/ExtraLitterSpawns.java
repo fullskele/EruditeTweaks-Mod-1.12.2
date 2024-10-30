@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+
 public class ExtraLitterSpawns {
 
     @SubscribeEvent
@@ -31,8 +32,6 @@ public class ExtraLitterSpawns {
         }
     }
 
-
-
     public static void registerExtraLitterRanges() {
         for (String entry : ConfigHandler.EXTRA_BABY_SPAWNS) {
             String[] sections = entry.trim().split(",");
@@ -40,13 +39,15 @@ public class ExtraLitterSpawns {
                 System.err.println("EruditeTweaks: Incorrect format in entry: " + entry);
                 continue;
             }
-            //TODO: Check for duplicates in sections[0]
             Range<Integer> range = parseRange(sections[1]);
             if (range == null) {
                 System.err.println("EruditeTweaks: Incorrect range in entry: " + entry);
                 continue;
             }
-
+            if (EruditeTweaks.extraLitterRanges.containsKey(sections[0])) {
+                System.err.println("EruditeTweaks: Skipping duplicate entry: " + entry);
+                continue;
+            }
             EruditeTweaks.extraLitterRanges.put(sections[0], range);
         }
     }

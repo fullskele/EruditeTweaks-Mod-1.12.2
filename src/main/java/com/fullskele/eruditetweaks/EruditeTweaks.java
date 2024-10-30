@@ -1,13 +1,17 @@
 package com.fullskele.eruditetweaks;
 
+import com.fullskele.eruditetweaks.tweaks.corpsecomplex.CommandDeathScrollClear;
+import com.fullskele.eruditetweaks.tweaks.minecraft.BreedingModifiers;
 import com.fullskele.eruditetweaks.tweaks.minecraft.ExtraLitterSpawns;
 import com.fullskele.eruditetweaks.tweaks.quark.ArchaeologistAdditions;
 import com.google.common.collect.Range;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import java.io.File;
 import java.util.HashMap;
@@ -36,9 +40,16 @@ public class EruditeTweaks {
     public void init(FMLInitializationEvent event) {
         //May need postinit?
         ArchaeologistAdditions.genArchaeologistTradesFromConfig();
-        MinecraftForge.EVENT_BUS.register(new ExtraLitterSpawns());
         ExtraLitterSpawns.registerExtraLitterRanges();
 
+        MinecraftForge.EVENT_BUS.register(BreedingModifiers.class);
+        MinecraftForge.EVENT_BUS.register(ExtraLitterSpawns.class);
+
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        if (Loader.isModLoaded("corpsecomplex")) event.registerServerCommand(new CommandDeathScrollClear());
     }
 
 }
