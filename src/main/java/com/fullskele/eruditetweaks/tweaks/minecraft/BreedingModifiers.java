@@ -82,8 +82,7 @@ public class BreedingModifiers {
     @Hook(targetMethod = "processInteract")
     @OnMethodCall(value = "handleEating", shift = Shift.INSTEAD)
     public static boolean processInteract(EntityHorse entityHorse, EntityPlayer player, EnumHand heldItem) {
-        //TODO Make this condition based on config
-        if (true) return modifiedHandleEating(entityHorse, player, player.getHeldItem(heldItem));
+        if (ConfigHandler.TWEAK_VANILLA_ANIMALS) return modifiedHandleEating(entityHorse, player, player.getHeldItem(heldItem));
 
         return originalHandleEating(entityHorse, player, player.getHeldItem(heldItem));
     }
@@ -92,7 +91,6 @@ public class BreedingModifiers {
     @OnMethodCall(value = "handleEating", shift = Shift.INSTEAD)
     public static boolean processInteract(AbstractChestHorse abstractChestHorse, EntityPlayer player, EnumHand heldItem) {
         if ((abstractChestHorse instanceof EntityMule || abstractChestHorse instanceof EntityDonkey)) {
-            //TODO Make this condition based on config
             if (ConfigHandler.TWEAK_VANILLA_ANIMALS) return modifiedHandleEating(abstractChestHorse, player, player.getHeldItem(heldItem));
 
             return originalHandleEating(abstractChestHorse, player, player.getHeldItem(heldItem));

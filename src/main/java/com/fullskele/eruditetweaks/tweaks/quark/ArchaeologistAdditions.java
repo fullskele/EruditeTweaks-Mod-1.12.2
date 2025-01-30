@@ -118,12 +118,13 @@ public class ArchaeologistAdditions {
                     continue;
                 }
 
+                //getDefaultInstance crashes on servers
                 try {
-                    ItemStack buyStack = ForgeRegistries.ITEMS.getValue(new ResourceLocation(tradeSplit[0])).getDefaultInstance();
+                    ItemStack buyStack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(tradeSplit[0])));
                     buyStack.setItemDamage(Integer.parseInt(tradeSplit[1]));
                     int minCost = Integer.parseInt(tradeSplit[2]);
                     int maxCost = Integer.parseInt(tradeSplit[3]);
-                    ItemStack sellStack = ForgeRegistries.ITEMS.getValue(new ResourceLocation(tradeSplit[4])).getDefaultInstance();
+                    ItemStack sellStack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(tradeSplit[4])));
                     sellStack.setItemDamage(Integer.parseInt(tradeSplit[5]));
                     int minSold = Integer.parseInt(tradeSplit[6]);
                     int maxSold = Integer.parseInt(tradeSplit[7]);

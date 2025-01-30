@@ -29,7 +29,7 @@ import java.util.*;
 public class EruditeTweaks {
     public static final String MODID = "eruditetweaks";
     public static final String NAME = "Erudite Tweaks";
-    public static final String VERSION = "1.0.5";
+    public static final String VERSION = "1.0.6";
 
 
     public static File config;
