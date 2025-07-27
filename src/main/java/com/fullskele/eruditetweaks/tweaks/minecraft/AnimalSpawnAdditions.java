@@ -4,8 +4,12 @@ import com.fullskele.eruditetweaks.ConfigHandler;
 import com.fullskele.eruditetweaks.EruditeTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,14 +18,35 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class AnimalSpawnAdditions {
     @SubscribeEvent
     public void onEntityJoin(EntityJoinWorldEvent event) {
+
+        //sheep griefing additions
         if (ConfigHandler.ENABLE_SHEEP_AI && event.getEntity() instanceof EntitySheep) {
 
             EntitySheep sheep = (EntitySheep) event.getEntity();
 
             sheep.tasks.addTask(5, new EntityAIEatGrassCustom(sheep));
+
+            //rabbit griefing additions
         } else if (ConfigHandler.ENABLE_RABBIT_AI && event.getEntity() instanceof EntityRabbit) {
             EntityRabbit rabbit = (EntityRabbit) event.getEntity();
             rabbit.tasks.addTask(5, new AIRaidFarmCustom(rabbit));
+        }
+
+        //scared mobs ai addition
+        if (ConfigHandler.ENABLE_SCARED_MOBS && event.getEntity() instanceof EntityCreature) {
+            EntityCreature creature = (EntityCreature) event.getEntity();
+            ResourceLocation entityName = EntityList.getKey(event.getEntity());
+
+            if (entityName != null && EruditeTweaks.AVOID_ENTITIES_LIST.contains(entityName.toString())) {
+                creature.tasks.addTask(5, new EntityAIAvoidEntity<>(
+                        creature,
+                        EntityPlayer.class,
+                        // Avoid players within X blocks, flee at speed Y, distant speed Z
+                        ConfigHandler.SCARED_MOB_RANGE,
+                        ConfigHandler.SCARED_MOB_SPEED_FAR,
+                        ConfigHandler.SCARED_MOB_SPEED_CLOSE
+                ));
+            }
         }
     }
 

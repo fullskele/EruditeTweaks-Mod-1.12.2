@@ -21,9 +21,20 @@ public class ConfigHandler {
 
     public static boolean ENABLE_RABBIT_AI;
     public static boolean ENABLE_SHEEP_AI;
+    public static boolean ENABLE_SCARED_MOBS;
     public static String RABBIT_CROPS_TO_RAID;
     public static String SHEEP_TALL_GRASSES;
     public static String[] SHEEP_GRASS_TO_DIRT;
+    public static String[] SCARED_MOBS;
+
+    public static float SCARED_MOB_RANGE;
+    public static double SCARED_MOB_SPEED_FAR;
+    public static double SCARED_MOB_SPEED_CLOSE;
+
+    public static boolean ENABLE_SATURATION_REGEN;
+    public static int SATURATION_CONVERT_INTERVAL;
+    public static float SATURATION_CONVERT_AMOUNT;
+    public static float SATURATION_DECREASE;
 
     public static boolean DOES_DEFILEMENT_BASE;
     public static String[] DEFILEMENT_CONVERSIONS;
@@ -54,9 +65,26 @@ public class ConfigHandler {
         config.addCustomCategoryComment(category, "Animal AI Tweaks");
         ENABLE_RABBIT_AI = config.getBoolean("enable rabbit AI additions", category, false, "");
         ENABLE_SHEEP_AI = config.getBoolean("enable sheep AI additions", category, false, "");
+        ENABLE_SCARED_MOBS = config.getBoolean("enable scared mobs AI additions", category, false, "");
+
         RABBIT_CROPS_TO_RAID = config.getString("rabbit crops to raid", category, "minecraft:potatoes:7,minecraft:wheat:7", "");
+
         SHEEP_TALL_GRASSES = config.getString("sheep tall grasses to eat", category, "minecraft:web,minecraft:deadbush", "");
         SHEEP_GRASS_TO_DIRT = config.getStringList("sheep grass to dirt conversions", category, new String[]{"minecraft:dirt:2,minecraft:dirt:0"}, "");
+
+        SCARED_MOBS = config.getStringList("List of Scared Mobs", category, new String[] {"minecraft:cow", "minecraft:sheep"}, "List of entity registry names to apply 'avoid player' AI to");
+        SCARED_MOB_RANGE = config.getFloat("scared mobs: max range", category, 20.0F, 0.0F, 256.0F, "");
+        SCARED_MOB_SPEED_CLOSE = config.getFloat("scared mobs: close speed", category, 2.0F, 0.0F, 100.0F, "Speed at which 'scared mobs' run, at a distance");
+        SCARED_MOB_SPEED_FAR = config.getFloat("scared mobs: far speed", category, 1.0F, 0.0F, 100F, "Speed at which 'scared mobs' run, up close");
+
+
+        category = "Minecraft: Survival Mechanic Tweaks";
+        config.addCustomCategoryComment(category, "Survival Mechanic Tweaks");
+
+        ENABLE_SATURATION_REGEN = config.getBoolean("enable excess saturation to health", category, false, "Converts saturation into health when at full hunger and missing health\nNote: Designed with /gamerule naturalRegeneration false");
+        SATURATION_CONVERT_INTERVAL = config.getInt("excess saturation: ticks", category, 20, 1, 999999, "Time (in ticks) between each saturation-to-health conversion");
+        SATURATION_CONVERT_AMOUNT = config.getFloat("excess saturation: health", category, 1.0F, 0.0F, 999999.0F, "Amount of health restored per conversion");
+        SATURATION_DECREASE = config.getFloat("excess saturation: drain", category, 1.0F, 0.0F, 999999.0F, "Amount of saturation consumed per conversion");
 
 
         category = "Defiled Lands: Defilement Conversion Tweaks";

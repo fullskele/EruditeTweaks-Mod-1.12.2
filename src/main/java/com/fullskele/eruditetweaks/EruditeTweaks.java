@@ -4,6 +4,7 @@ import com.fullskele.eruditetweaks.tweaks.corpsecomplex.CommandDeathScrollClear;
 import com.fullskele.eruditetweaks.tweaks.minecraft.BreedingModifiers;
 import com.fullskele.eruditetweaks.tweaks.minecraft.ExtraLitterSpawns;
 import com.fullskele.eruditetweaks.tweaks.minecraft.AnimalSpawnAdditions;
+import com.fullskele.eruditetweaks.tweaks.minecraft.PlayerRegenTweaks;
 import com.fullskele.eruditetweaks.tweaks.quark.ArchaeologistAdditions;
 import com.google.common.collect.Range;
 import jdk.nashorn.internal.runtime.regexp.joni.Config;
@@ -38,6 +39,7 @@ public class EruditeTweaks {
     public static final HashSet<IBlockState> RABBIT_CROPS = new HashSet<>();
     public static final HashSet<IBlockState> SHEEP_TALL_GRASS = new HashSet<>();
     public static final HashMap<IBlockState, IBlockState> SHEEP_GRASS_CONVERSIONS = new HashMap<>();
+    public static HashSet<String> AVOID_ENTITIES_LIST = new HashSet<>();
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -50,16 +52,26 @@ public class EruditeTweaks {
         //May need postinit?
         if (ConfigHandler.DOES_ARCHAEOLOGISTS_CHANGES) ArchaeologistAdditions.genArchaeologistTradesFromConfig();
         ExtraLitterSpawns.registerExtraLitterRanges();
+
         if (ConfigHandler.TWEAK_VANILLA_ANIMALS) {
             BreedingModifiers.registerVanillaBreedingItems();
             MinecraftForge.EVENT_BUS.register(BreedingModifiers.class);
         }
-        if (ConfigHandler.ENABLE_SHEEP_AI || ConfigHandler.ENABLE_RABBIT_AI) {
+
+        if (ConfigHandler.ENABLE_SHEEP_AI || ConfigHandler.ENABLE_RABBIT_AI || ConfigHandler.ENABLE_SCARED_MOBS) {
             MinecraftForge.EVENT_BUS.register(new AnimalSpawnAdditions());
             AnimalSpawnAdditions.setupGriefConfig();
+            if (ConfigHandler.ENABLE_SCARED_MOBS) AVOID_ENTITIES_LIST = new HashSet<>(Arrays.asList(ConfigHandler.SCARED_MOBS));
         }
 
-        MinecraftForge.EVENT_BUS.register(ExtraLitterSpawns.class);
+        if (ConfigHandler.ENABLE_SATURATION_REGEN) {
+            MinecraftForge.EVENT_BUS.register(new PlayerRegenTweaks());
+        }
+
+        if (ConfigHandler.EXTRA_BABY_SPAWNS.length > 0) {
+            MinecraftForge.EVENT_BUS.register(new ExtraLitterSpawns());
+        }
+
 
     }
 
